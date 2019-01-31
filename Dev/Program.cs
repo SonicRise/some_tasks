@@ -75,6 +75,7 @@ namespace Dev
 
             bool fizz = false;
             bool buzz = false;
+            bool exception = false;
 
 
             //for clean array
@@ -83,17 +84,10 @@ namespace Dev
 
             for (int i = 0; i < numbers.Length; i++)
             {
-                try
+                if (!string.IsNullOrEmpty(numbers[i]))
                 {
-                    if (!string.IsNullOrEmpty(numbers[i]))
-                    {
-                        temp[temp_count] = numbers[i];
-                        temp_count++;
-                    }
-                }
-                catch (FormatException e)
-                {
-                    Console.WriteLine(e.Message);
+                    temp[temp_count] = numbers[i];
+                    temp_count++;
                 }
             }
 
@@ -120,49 +114,59 @@ namespace Dev
                 }
 
                 //sum of all digits in number 
-                for (int x = 0; x < symbol.Length; x++)
+                try
                 {
-                    end = end + Convert.ToInt32(symbol[x].ToString()); 
-                }
+                    for (int x = 0; x < symbol.Length; x++)
+                    {
+                        end = end + Convert.ToInt32(symbol[x].ToString());
+                    }
 
-                if (fizzbuzzNumber(end, 3) == end)
-                {
-                    fizz = true;
-                }
+                    if (fizzbuzzNumber(end, 3) == end)
+                    {
+                        fizz = true;
+                    }
 
-                if (symbol[symbol.Length-1] == '0' || symbol[symbol.Length - 1] == '5')
-                {
-                    buzz = true;
-                }
+                    if (symbol[symbol.Length - 1] == '0' || symbol[symbol.Length - 1] == '5')
+                    {
+                        buzz = true;
+                    }
 
-                //check on 0
-                if (end == 0)
-                {
+                    //check on 0
+                    if (end == 0)
+                    {
+                        fizz = false;
+                        buzz = false;
+                    }
+
+                    if (fizz && buzz)
+                    {
+                        result[b] = "fizzbuzz";
+                    }
+                    else if (fizz)
+                    {
+                        result[b] = "fizz";
+                    }
+                    else if (buzz)
+                    {
+                        result[b] = "buzz";
+                    }
+                    else
+                    {
+                        result[b] = modified_arr[b];
+                    }
+
                     fizz = false;
                     buzz = false;
                 }
-
-                if (fizz && buzz)
-                {
-                    result[b] = "fizzbuzz";
+                catch(FormatException e){
+                    Console.WriteLine(e.Message);
+                    exception = true;
                 }
-                else if (fizz)
-                {
-                    result[b] = "fizz";
-                }
-                else if (buzz)
-                {
-                    result[b] = "buzz";
-                }
-                else
-                {
-                    result[b] = modified_arr[b];
-                }
-
-                fizz = false;
-                buzz = false;
             }
-            Console.WriteLine(string.Join(" ",result));
+            if (!exception)
+            {
+                Console.WriteLine(string.Join(" ", result));               
+            }
             Console.ReadLine();
         }
 
