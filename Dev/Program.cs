@@ -12,10 +12,20 @@ namespace Dev
             Console.WriteLine("Введите строку: ");
             string txt = Console.ReadLine();
 
-            //uniq_symbols(txt);
-            fizzbuzz(txt);
 
-        }
+            /*char[] arr = new char[Convert.ToString(Int32.Parse(txt), 2).Length];
+            arr = Convert.ToString(Int32.Parse(txt), 2).ToCharArray();
+            arr[arr.Length - 3] = '1';*/
+
+            //string a = String.Join("", arr);
+
+            
+            Console.WriteLine(Convert.ToString(Int32.Parse(txt), 2));
+
+
+            //Console.WriteLine(thirdRightEq1(Int32.Parse(txt)));
+            Console.ReadLine();
+        }   
 
         static void uniq_symbols(String s)
         {
@@ -69,6 +79,14 @@ namespace Dev
             Console.ReadLine();
         }
 
+        /*
+         * 1. Input - sequence of numbers.
+         * 2. If number is divisible by 3, replace it with fizz
+         * 3. if number is divisible by 5, replace it with buzz
+         * 4. If both, then fizzbuzz
+         * 5. Output to the console
+         * IMPORTANT: division operation and modulo operation is prohibited
+         */
         static void fizzbuzz(String s)
         {
             string[] numbers = s.Split(' ');
@@ -184,5 +202,112 @@ namespace Dev
             }
             return temp;
         }
+
+        /// <summary>
+        /// 1) Checks the number is divisible by 3
+        /// </summary>
+        /// <param name="number"> number from console </param>
+        static void isDivisibleByThree(int number)
+        {
+            if (number % 3 == 0)
+            {
+                Console.WriteLine("Yes");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("No");
+                Console.ReadLine();
+            }
+        }
+
+        /// <summary>
+        /// 2) Checks the number is divisible by 5 with remainder is 2
+        /// and is divisible by 7 with remainder is 1
+        /// </summary>
+        /// <param name="number"> number from console </param>
+        static void isDivisibleByFiveOrSeven(int number)
+        {
+            if (number % 5 == 2 && number % 7 == 1)
+            {
+                Console.WriteLine("Yes");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("No");
+                Console.ReadLine();
+            }
+        }
+
+        /// <summary>
+        /// 3) Checks the number is divisible by 4 and more than 10
+        /// </summary>
+        /// <param name="number"> Number from console </param>
+        static void isDivisibleByFourAndMoreTen(int number)
+        {
+            if (number % 4 == 0 && number >= 10)
+            {
+                Console.WriteLine("Yes");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("No");
+                Console.ReadLine();
+            }
+        }
+
+        /// <summary>
+        /// 4) Checks the number is between 5 and 10
+        /// </summary>
+        /// <param name="number"> Number from console</param>
+        static void isMoreFiveLessTen(int number)
+        {
+            if (number >= 5 && number <= 10)
+            {
+                Console.WriteLine("Yes");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine("No");
+                Console.ReadLine();
+            }
+        }
+
+        /// <summary>
+        /// 5) Determines how many thousands in a number 
+        /// </summary>
+        /// <param name="number"> Number from console </param>
+        /// <returns> The number of thousands in the number </returns>
+        static int thousands(int number)
+        {
+            return number / 1000 % 10;
+        }
+
+        /// <summary>
+        /// 7) Determines 3d rigth bit in binary code.
+        /// </summary>
+        /// <param name="number"> Decimal number from console </param>
+        /// <returns> 0 or 1 </returns>
+        static int thirdRight(int number)
+        {
+            return Int32.Parse(Convert.ToString(number >> 2, 2).Substring(Convert.ToString(number >> 2, 2).Length - 1));
+        }
+
+        static int thirdRightEq1(int number)
+        {
+            //char[] arr = new char[Convert.ToString(number, 2).Length];
+            //arr = Convert.ToString(number, 2).ToCharArray();
+            //arr[arr.Length - 3] = '1';
+
+            //string a = String.Join("", arr);
+
+
+            return 0;
+            //return Convert.ToInt32(a, 2);
+        }
+
     }
 }
