@@ -10,20 +10,10 @@ namespace Dev
         static void Main(string[] args)
         {
             Console.WriteLine("Введите строку: ");
-            string txt = Console.ReadLine();
+            string txt1 = Console.ReadLine();
+            string txt2 = Console.ReadLine();
 
-
-            /*char[] arr = new char[Convert.ToString(Int32.Parse(txt), 2).Length];
-            arr = Convert.ToString(Int32.Parse(txt), 2).ToCharArray();
-            arr[arr.Length - 3] = '1';*/
-
-            //string a = String.Join("", arr);
-
-            
-            Console.WriteLine(Convert.ToString(Int32.Parse(txt), 2));
-
-
-            //Console.WriteLine(thirdRightEq1(Int32.Parse(txt)));
+            Console.WriteLine(numbers_Comparision(txt1, txt2));
             Console.ReadLine();
         }   
 
@@ -296,18 +286,118 @@ namespace Dev
             return Int32.Parse(Convert.ToString(number >> 2, 2).Substring(Convert.ToString(number >> 2, 2).Length - 1));
         }
 
-        static int thirdRightEq1(int number)
+        /// <summary>
+        /// 8) Replaces a third bit in binary code of a decimal number to '1'
+        /// </summary>
+        /// <param name="number"> Number from console </param>
+        /// <returns> A new decimal number with replaced third bit </returns>
+        static int thirdRightEq1(string number)
         {
-            //char[] arr = new char[Convert.ToString(number, 2).Length];
-            //arr = Convert.ToString(number, 2).ToCharArray();
-            //arr[arr.Length - 3] = '1';
+            //converted decimal to binary code
+            string a = (Convert.ToString(Int32.Parse(number), 2)).PadLeft(8, '0');
 
-            //string a = String.Join("", arr);
+            //3d right bit is changed to '1'
+            char[] arr = a.ToCharArray();
+            arr[a.Length - 3] = '1';
 
-
-            return 0;
-            //return Convert.ToInt32(a, 2);
+            return Convert.ToInt32(string.Join("", arr), 2); 
         }
 
+        /// <summary>
+        /// 9) Replaces a fourth bit in binary code of a decimal number to '0'
+        /// </summary>
+        /// <param name="number"> Number from console </param>
+        /// <returns> A new decimal number with replaced fourth bit </returns>
+        static int fourthEq0(string number)
+        {
+            //converted decimal to binary code
+            string a = (Convert.ToString(Int32.Parse(number), 2)).PadLeft(8, '0');
+
+            //4th bit changed to '0'
+            char[] arr = a.ToCharArray();
+            arr[3] = '0';
+
+            return Convert.ToInt32(string.Join("", arr), 2);
+        }
+
+        /// <summary>
+        /// Reverces 2nd bit in a binary code of a decimal number
+        /// </summary>
+        /// <param name="number"> Numver from console </param>
+        /// <returns> New decimal number with reverced 2nd bit </returns>
+        static int secondBitReverse(string number)
+        {
+            //converted decimal to binary code
+            string a = (Convert.ToString(Int32.Parse(number), 2)).PadLeft(8, '0');
+
+            //2nd bit reversed
+            char[] arr = a.ToCharArray();
+            if (arr[1] == '1')
+            {
+                arr[1] = '0';
+            }
+            else
+            {
+                arr[1] = '1';
+            }
+
+            return Convert.ToInt32(string.Join("", arr), 2);
+        }
+
+        /// <summary>
+        /// 2.1) Checks the number is devided by 3 and 7
+        /// </summary>
+        /// <param name="number"> Number from console </param>
+        /// <returns> The answer yes or no </returns>
+        static string is_Devided_By_7_Or_3(string number)
+        {
+            try
+            {
+                int a = Int32.Parse(number);
+
+                if (a % 3 == 0 && a % 7 == 0)
+                {
+                    return "Yes";
+                }
+                else
+                {
+                    return "No";
+                }
+            }
+            catch{
+                return "Not a number";
+            } 
+        }
+
+        /// <summary>
+        /// 2.2) Compares two numbers and shows which is bigger or they are equal
+        /// </summary>
+        /// <param name="init_number1"> Number from console </param>
+        /// <param name="init_number2"> Number from console </param>
+        /// <returns> the bigger number </returns>
+        static string numbers_Comparision(string init_number1, string init_number2)
+        {
+            try
+            {
+                int number1 = Int32.Parse(init_number1);
+                int number2 = Int32.Parse(init_number2);
+
+                if (number1 > number2)
+                {
+                    return number1 + " is bigger";
+                }
+                else if (number2 > number1)
+                {
+                    return number2 + " is bigger";
+                }
+                else
+                {
+                    return number1 + " = " + number2;
+                }
+
+            }catch{
+                return "Not a number";
+            }
+        }
     }
 }
