@@ -11,9 +11,9 @@ namespace Dev
         {
             Console.WriteLine("Введите строку: ");
             string txt1 = Console.ReadLine();
-            string txt2 = Console.ReadLine();
+            //string txt2 = Console.ReadLine();
 
-            Console.WriteLine(numbers_Comparision(txt1, txt2));
+            Day_Of_Week(txt1);
             Console.ReadLine();
         }   
 
@@ -396,6 +396,72 @@ namespace Dev
                 }
 
             }catch{
+                return "Not a number";
+            }
+        }
+
+        /// <summary>
+        /// 2.3) Sums all numbers which are entered consistently from console
+        /// </summary>
+        static void sum_Numbers()
+        {
+            int sum = 0;
+            int number;
+
+            while (true)
+            {
+                try
+                {
+                    Console.Write("Enter a number: ");
+                    number = Int32.Parse(Console.ReadLine());
+                    sum += number;
+
+                    if (number == 0)
+                    {
+                        Console.WriteLine("Summ is: " + sum);
+                        break;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Not a number");
+                }
+            }
+        }
+
+        static string Day_Of_Week(string init_number)
+        {
+            int number = Int32.Parse(init_number);
+            try
+            {
+                if (number <= 7 && number > 0)
+                {
+                    /*switch (number)
+                    {
+                        case 1:
+                            return "Monday";
+                        case 2:
+                            return "Tuesday";
+                        case 3:
+                            return "Wednesday";
+                        case 4:
+                            return "Thursday";
+                        case 5:
+                            return "Friday";
+                        case 6:
+                            return "Saturday";
+                        case 7:
+                            return "Sunday";
+                    }*/
+                    return "";
+                }
+                else
+                {
+                    return "Incorrect number";
+                }
+            }
+            catch
+            {
                 return "Not a number";
             }
         }
