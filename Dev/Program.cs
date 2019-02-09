@@ -436,7 +436,7 @@ namespace Dev
             {
                 if (number <= 7 && number > 0)
                 {
-                    /*switch (number)
+                    switch (number)
                     {
                         case 1:
                             return "Monday";
@@ -452,8 +452,9 @@ namespace Dev
                             return "Saturday";
                         case 7:
                             return "Sunday";
-                    }*/
-                    return "";
+                        default:
+                            return "";
+                    }
                 }
                 else
                 {
