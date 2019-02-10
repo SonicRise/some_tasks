@@ -13,9 +13,9 @@ namespace Dev
             string txt1 = Console.ReadLine();
             //string txt2 = Console.ReadLine();
 
-            Day_Of_Week(txt1);
+            Sum_Of_Numbers_With_Remainder(txt1);
             Console.ReadLine();
-        }   
+        }
 
         static void uniq_symbols(String s)
         {
@@ -166,14 +166,14 @@ namespace Dev
                     fizz = false;
                     buzz = false;
                 }
-                catch(FormatException e){
+                catch (FormatException e) {
                     Console.WriteLine(e.Message);
                     exception = true;
                 }
             }
             if (!exception)
             {
-                Console.WriteLine(string.Join(" ", result));               
+                Console.WriteLine(string.Join(" ", result));
             }
             Console.ReadLine();
         }
@@ -300,7 +300,7 @@ namespace Dev
             char[] arr = a.ToCharArray();
             arr[a.Length - 3] = '1';
 
-            return Convert.ToInt32(string.Join("", arr), 2); 
+            return Convert.ToInt32(string.Join("", arr), 2);
         }
 
         /// <summary>
@@ -364,9 +364,9 @@ namespace Dev
                     return "No";
                 }
             }
-            catch{
+            catch {
                 return "Not a number";
-            } 
+            }
         }
 
         /// <summary>
@@ -395,7 +395,7 @@ namespace Dev
                     return number1 + " = " + number2;
                 }
 
-            }catch{
+            } catch {
                 return "Not a number";
             }
         }
@@ -429,11 +429,17 @@ namespace Dev
             }
         }
 
-        static string Day_Of_Week(string init_number)
+        /// <summary>
+        /// 2.4) Shows a day of the week by a number which is enter from console 
+        /// </summary>
+        /// <param name="init_number"> Number from console </param>
+        /// <returns> Rigth day of the week </returns>
+        static string Day_Of_The_Week(string init_number)
         {
-            int number = Int32.Parse(init_number);
+            int number;
             try
             {
+                number = Int32.Parse(init_number);
                 if (number <= 7 && number > 0)
                 {
                     switch (number)
@@ -464,6 +470,150 @@ namespace Dev
             catch
             {
                 return "Not a number";
+            }
+        }
+
+        /// <summary>
+        /// 2.5) Shows a number of a day in the week
+        /// </summary>
+        /// <param name="day"> Day of the week </param>
+        /// <returns> A number of the day </returns>
+        static string Number_Of_A_Day(string day)
+        {
+            switch (day)
+            {
+                case "Monday":
+                    return "1";
+                case "Thuesday":
+                    return "2";
+                case "Wednesday":
+                    return "3";
+                case "Thursday":
+                    return "4";
+                case "Friday":
+                    return "5";
+                case "Saturday":
+                    return "6";
+                case "Sunday":
+                    return "7";
+                default:
+                    return "Does not exist";
+            }
+        }
+
+
+        /// <summary>
+        /// 2.6) Shows a sum of even numbers. Quantity of numbers are entered from console.
+        /// </summary>
+        /// <param name="init_number"> Quantity of numbers </param>
+        static void Sum_Of_Even(int init_number)
+        {
+            Console.WriteLine("2 + 4 + 6 + ... + " + 2 * init_number + " = {0}", init_number * (init_number + 1));
+        }
+
+        /// <summary>
+        /// 2.7) Shows a sum of squares of numbers. 
+        /// </summary>
+        /// <param name="init_number"> Quantity of numbers </param>
+        static void Sum_Of_Squares(int init_number)
+        {
+            Console.WriteLine("1^2 + 2^2 + 3^2 + ... + " + Math.Pow(init_number, 2) + " = {0}", (init_number * (init_number + 1) * (2 * init_number + 1)) / 6);
+        }
+
+        /// <summary>
+        /// 2.8) Shows a sequence of Fibonachi
+        /// </summary>
+        /// <param name="init_number"> Quantity of numbers in a sequence </param>
+        static void Fibo(int init_number)
+        {
+            int number1 = 0;
+            int number2 = 1;
+            int temp = 0;
+
+            for (int i = 0; i < init_number; i++)
+            {
+                Console.Write(number2 + " ");
+                temp = number2;
+                number2 = number1 + number2;
+                number1 = temp;
+            }
+        }
+
+        /// <summary>
+        /// 2.9) Shows all numbers between two entered numbers from console.
+        /// </summary>
+        /// <param name="init_number1"> Number 1 from console </param>
+        /// <param name="init_number2"> Number 2 from console </param>
+        static void Numbers_Between_Numbers(string init_number1, string init_number2)
+        {
+            int number1;
+            int number2;
+            int difference;
+
+            try
+            {
+                number1 = Int32.Parse(init_number1);
+                number2 = Int32.Parse(init_number2);
+
+                if (number1 > number2)
+                {
+                    difference = number1 - number2;
+                    for (int i = 0; i <= difference; i++)
+                    {
+                        Console.Write(number2 + i + " ");
+                    }
+                }
+                else
+                {
+                    difference = number2 - number1;
+                    for (int i = 0; i <= difference; i++)
+                    {
+                        Console.Write(number1 + i + " ");
+                    }
+                }
+            }catch{
+                Console.WriteLine("Not a number");
+            }
+        }
+
+        /// <summary>
+        /// 2.9) Shows a sum of numbers which have a remainder 2 after deviding by 5 or have a reminder 1 after deviding by 3.
+        /// Quantity of the numbers are entered from console.
+        /// </summary>
+        /// <param name="init_quantity"> quantity of numbers from console </param>
+        static void Sum_Of_Numbers_With_Remainder(string init_quantity)
+        {
+            int quantity_start = 0;
+            int quantity_end;
+            int number = 0;
+            int sum = 0;
+
+            try
+            {
+                quantity_end = Int32.Parse(init_quantity);
+
+                while (quantity_start != quantity_end)
+                {
+                    if (number%5==2||number%3==1)
+                    {
+                        if (quantity_end - quantity_start == 1)
+                        {
+                            Console.Write(number + ": ");
+                        }
+                        else
+                        {
+                            Console.Write(number + " + ");
+                        }
+                        sum += number;
+                        quantity_start++;
+                    }
+                    number++;
+                }
+                Console.WriteLine(sum);
+            }
+            catch
+            {
+                Console.WriteLine("Not a number");
             }
         }
     }
