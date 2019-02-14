@@ -13,7 +13,7 @@ namespace Dev
             string txt1 = Console.ReadLine();
             //string txt2 = Console.ReadLine();
 
-            Sum_Of_Numbers_With_Remainder(txt1);
+            Arr_With_Rand(txt1);
             Console.ReadLine();
         }
 
@@ -345,7 +345,7 @@ namespace Dev
         }
 
         /// <summary>
-        /// 2.1) Checks the number is devided by 3 and 7
+        /// 2.1) Checks the number is divided by 3 and 7
         /// </summary>
         /// <param name="number"> Number from console </param>
         /// <returns> The answer yes or no </returns>
@@ -577,7 +577,7 @@ namespace Dev
         }
 
         /// <summary>
-        /// 2.9) Shows a sum of numbers which have a remainder 2 after deviding by 5 or have a reminder 1 after deviding by 3.
+        /// 2.9) Shows a sum of numbers which have a remainder 2 after dividing by 5 or have a reminder 1 after dividing by 3.
         /// Quantity of the numbers are entered from console.
         /// </summary>
         /// <param name="init_quantity"> quantity of numbers from console </param>
@@ -616,5 +616,188 @@ namespace Dev
                 Console.WriteLine("Not a number");
             }
         }
+
+        /// <summary>
+        /// 3.1) Creates a one-dimensional array with numbers which have a remainder 2 after dividing by 5
+        /// </summary>
+        /// <param name="init_size"> A size of the array </param>
+        static void Arr_With_Remainder(string init_size)
+        {
+            int counter = 0;
+            int index = 0;
+            try
+            {
+                int[] numbers = new int[Int32.Parse(init_size)];
+
+                while (index != numbers.Length)
+                {
+                    if (counter % 5 == 2)
+                    {
+                        numbers[index] = counter;
+                        index++;
+                    }
+                    counter++;
+                }
+
+                foreach (int number in numbers)
+                {
+                    Console.Write(number + " ");
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Not a number");
+            }
+        }
+
+        /// <summary>
+        /// 3.2) Creates a one-dimensional array with degrees of two.
+        /// </summary>
+        /// <param name="init_size"> A size of the array </param>
+        static void Arr_With_Two_Degree(string init_size)
+        {
+            try
+            {
+                int[] numbers = new int[Int32.Parse(init_size)];
+
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                    numbers[i] = (int)Math.Pow(2 , i);
+                }
+
+                foreach (int number in numbers)
+                {
+                    Console.Write(number + " ");
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Not a number");
+            }
+        }
+
+        /// <summary>
+        /// 3.3) Creates a one-dimensional char array with letters start from 97 ane then increase each letter on 2;
+        /// </summary>
+        /// <param name="init_size"> A size of the array </param>
+        static void Arr_With_Chars(string init_size)
+        {
+            int letter_a = 97;
+            try
+            {
+                char[] letters = new char[Int32.Parse(init_size)];
+
+                for (int i = 0; i < letters.Length; i++)
+                {
+                    letters[i] = (char)(letter_a + i*2);
+                }
+
+                foreach (char letter in letters)
+                {
+                    Console.Write(letter + " ");
+                }
+
+                Console.WriteLine();
+                
+                for (int i = letters.Length-1; i >= 0; i--)
+                {
+                    Console.Write(letters[i] + " ");
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Not a number");
+            }
+        }
+
+        /// <summary>
+        /// 3.4) Creates a one-dimensional char array with big consonant letter
+        /// </summary>
+        /// <param name="init_size"> A size of the array </param>
+        static void Arr_With_Consonant(string init_size)
+        {
+            int letter_ascii = 66;
+            try
+            {
+                char[] letters = new char[Int32.Parse(init_size)];
+
+                for (int i = 0; i < letters.Length; i++)
+                {
+                    if (letter_ascii == 69 || letter_ascii == 73 ||
+                        letter_ascii == 79 || letter_ascii == 85 ||
+                        letter_ascii == 89)
+                    {
+                        letter_ascii++;
+                    }
+
+                    letters[i] = (char)(letter_ascii);
+                    letter_ascii++;
+                }
+
+                foreach (char letter in letters)
+                {
+                    Console.Write(letter + " ");
+                }
+            }
+            catch(FormatException e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+        /// <summary>
+        /// 3.5) Creates a one-dimensional char array with random numbers.
+        /// Then shows a minimum number and its index, or indexes if there are several minimums.
+        /// </summary>
+        /// <param name="init_size"> A size of the array </param>
+        static void Arr_With_Rand(string init_size)
+        {
+            string index = "";
+            int little;
+
+            try
+            {
+                int[] numbers = new int[Int32.Parse(init_size)];
+                                
+                Random rand = new Random();
+
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                    numbers[i] = rand.Next(100);
+                }
+
+                foreach (int number in numbers)
+                {
+                    Console.Write(number + " ");
+                }
+                Console.WriteLine();
+
+                little = numbers[0];
+
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                    if (numbers[i] < little)
+                    {
+                        little = numbers[i];
+                    }
+                }
+
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                    if (numbers[i] == little)
+                    {
+                        index += i.ToString() + " ";
+                    }
+                }
+
+                Console.WriteLine("The little number is: {0}, index is: {1}", little, index);
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e);
+            }
+        }
+
+
     }
 }
