@@ -11,9 +11,9 @@ namespace Dev
         {
             Console.WriteLine("Введите строку: ");
             string txt1 = Console.ReadLine();
-            //string txt2 = Console.ReadLine();
+            string txt2 = Console.ReadLine();
 
-            Arr_With_Rand(txt1);
+            Arr(txt1, txt2);
             Console.ReadLine();
         }
 
@@ -571,7 +571,7 @@ namespace Dev
                         Console.Write(number1 + i + " ");
                     }
                 }
-            }catch{
+            } catch {
                 Console.WriteLine("Not a number");
             }
         }
@@ -594,7 +594,7 @@ namespace Dev
 
                 while (quantity_start != quantity_end)
                 {
-                    if (number%5==2||number%3==1)
+                    if (number % 5 == 2 || number % 3 == 1)
                     {
                         if (quantity_end - quantity_start == 1)
                         {
@@ -662,7 +662,7 @@ namespace Dev
 
                 for (int i = 0; i < numbers.Length; i++)
                 {
-                    numbers[i] = (int)Math.Pow(2 , i);
+                    numbers[i] = (int)Math.Pow(2, i);
                 }
 
                 foreach (int number in numbers)
@@ -689,7 +689,7 @@ namespace Dev
 
                 for (int i = 0; i < letters.Length; i++)
                 {
-                    letters[i] = (char)(letter_a + i*2);
+                    letters[i] = (char)(letter_a + i * 2);
                 }
 
                 foreach (char letter in letters)
@@ -698,8 +698,8 @@ namespace Dev
                 }
 
                 Console.WriteLine();
-                
-                for (int i = letters.Length-1; i >= 0; i--)
+
+                for (int i = letters.Length - 1; i >= 0; i--)
                 {
                     Console.Write(letters[i] + " ");
                 }
@@ -739,7 +739,7 @@ namespace Dev
                     Console.Write(letter + " ");
                 }
             }
-            catch(FormatException e)
+            catch (FormatException e)
             {
                 Console.WriteLine(e);
             }
@@ -758,7 +758,7 @@ namespace Dev
             try
             {
                 int[] numbers = new int[Int32.Parse(init_size)];
-                                
+
                 Random rand = new Random();
 
                 for (int i = 0; i < numbers.Length; i++)
@@ -798,6 +798,137 @@ namespace Dev
             }
         }
 
+        /// <summary>
+        /// 3.6) Creates a one-dimensional array with random number and then sorts desc.
+        /// </summary>
+        /// <param name="init_size"> A size of the array from console</param>
+        static void Arr_Rand_Sort(string init_size)
+        {
+            try
+            {
+                int temp;
+                int[] numbers = new int[Int32.Parse(init_size)];
 
+                Random rand = new Random();
+
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                    numbers[i] = rand.Next(100);
+                }
+
+                for (int i = 1; i < numbers.Length;i++)
+                {
+                    for (int j = numbers.Length-1; j != 0; j--)
+                    {
+                        if (numbers[j] > numbers[j-1])
+                        {
+                            temp = numbers[j-1];
+                            numbers[j - 1] = numbers[j];
+                            numbers[j] = temp;
+                        }
+                    }
+                }
+
+                foreach (int number in numbers)
+                {
+                    Console.Write(number + " ");
+                }
+            }
+            catch(FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// 3.7) Creates a one-dimensional array with random chars and then reverses all array
+        /// </summary>
+        /// <param name="init_size"> A size of the array from console </param>
+        static void Arr_Char_Reversed(string init_size)
+        {
+            try
+            {
+                char temp;
+                char[] symbols = new char[Int32.Parse(init_size)];
+                Random rand = new Random();
+
+                for (int i = 0; i < symbols.Length; i++)
+                {
+                    symbols[i] = (char)(65 + rand.Next(25));
+                }
+
+                foreach (char symbol in symbols)
+                {
+                    Console.Write(symbol + " ");
+                }
+
+                for (int i = 0; i < symbols.Length/2; i++)
+                {
+                    temp = symbols[i];
+                    symbols[i] = symbols[symbols.Length - 1 - i];
+                    symbols[symbols.Length - 1 - i] = temp;
+                }
+                Console.WriteLine();
+                foreach (char symbol in symbols)
+                {
+                    Console.Write(symbol + " ");
+                }
+
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        static void Arr(string init_rows, string init_columns)
+        {
+            try
+            {
+                int[,] numbers = new int[Int32.Parse(init_rows), Int32.Parse(init_columns)];
+                Random rand = new Random();
+
+                for (int i = 0; i < numbers.GetLength(0); i++)
+                {
+                    for (int j = 0; j < numbers.GetLength(1); j++)
+                    {
+                        numbers[i, j] = rand.Next(100);
+                    }
+                }
+
+                for (int i = 0; i < numbers.GetLength(0); i++)
+                {
+                    for (int j = 0; j < numbers.GetLength(1); j++)
+                    {
+                        Console.Write(numbers[i,j] + "\t");
+                    }
+                    Console.WriteLine();
+                }
+
+                int[,] result = new int[numbers.GetLength(1), numbers.GetLength(0)];
+                for (int i = 0; i < result.GetLength(0); i++)
+                {
+                    for (int j = 0; j < result.GetLength(1); j++)
+                    {
+                        result[0, 0] = numbers[0, 0];
+                        result[0, 1] = numbers[1, 0];
+                        result[0, 2] = numbers[2, 0];
+
+                        result[1, 0] = numbers[0, 1]; result[i, j] = numbers[j, i];
+                        result[1, 1] = numbers[1, 1];
+                        result[1, 2] = numbers[2, 1];
+
+                        result[2, 0] = numbers[0, 2];
+                        result[2, 1] = numbers[1, 2];
+                        result[2, 2] = numbers[2, 2];
+                    }
+                }
+
+
+            } catch(FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
     }
 }
