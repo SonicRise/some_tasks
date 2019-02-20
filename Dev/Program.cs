@@ -881,7 +881,12 @@ namespace Dev
             }
         }
 
-        static void Arr(string init_rows, string init_columns)
+        /// <summary>
+        /// 3.8) Creates a two-dimensional array with random numbers and then changes all columns to rows. 
+        /// </summary>
+        /// <param name="init_rows"> Number of a rows </param>
+        /// <param name="init_columns"> Number of a columns </param>
+        static void Arr_Change_Columns_To_Rows(string init_rows, string init_columns)
         {
             try
             {
@@ -910,22 +915,81 @@ namespace Dev
                 {
                     for (int j = 0; j < result.GetLength(1); j++)
                     {
-                        result[0, 0] = numbers[0, 0];
-                        result[0, 1] = numbers[1, 0];
-                        result[0, 2] = numbers[2, 0];
-
-                        result[1, 0] = numbers[0, 1]; result[i, j] = numbers[j, i];
-                        result[1, 1] = numbers[1, 1];
-                        result[1, 2] = numbers[2, 1];
-
-                        result[2, 0] = numbers[0, 2];
-                        result[2, 1] = numbers[1, 2];
-                        result[2, 2] = numbers[2, 2];
+                        result[i, j] = numbers[j, i];
                     }
                 }
 
+                Console.WriteLine();
 
+                for (int i = 0; i < result.GetLength(0); i++)
+                {
+                    for (int j = 0; j < result.GetLength(1); j++)
+                    {
+                        Console.Write(result[i, j] + "\t");
+                    }
+                    Console.WriteLine();
+                }
             } catch(FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        static void Arr(string init_rows, string init_columns)
+        {
+            try
+            {
+                int[,] numbers = new int[Int32.Parse(init_rows), Int32.Parse(init_columns)];
+                int[,] result = new int[numbers.GetLength(0) - 1, numbers.GetLength(1) - 1];
+                Random rand = new Random();
+                int a, b;
+
+                int row = 0; //rand.Next(numbers.GetLength(0) - 1); //0
+                int column = 0; //rand.Next(numbers.GetLength(1) - 1);//0
+
+                for (int i = 0; i < numbers.GetLength(0); i++)
+                {
+                    for (int j = 0; j < numbers.GetLength(1); j++)
+                    {
+                        numbers[i, j] = rand.Next(100);
+                    }
+                }
+
+                for (int i = 0; i < numbers.GetLength(0);i++)
+                {
+                    for (int j = 0; j < numbers.GetLength(1); j++)
+                    {
+                        Console.Write(numbers[i,j] + "\t");
+                    }
+                    Console.WriteLine();
+                }
+
+                for (int i = 0; i < result.GetLength(0); i++)
+                {
+                    if (i == row) a = i + 1;
+                    else a = i;
+                    for (int j = 0; j < result.GetLength(1); j++)
+                    {
+                        if (j == column) b = j + 1;
+                        else b = j;
+
+                        result[i, j] = numbers[a,b];
+                    }
+                }
+
+                Console.WriteLine();
+
+                for (int i = 0; i < result.GetLength(0); i++)
+                {
+                    for (int j = 0; j < result.GetLength(1); j++)
+                    {
+                        Console.Write(result[i,j] + " ");
+                    }
+                    Console.WriteLine();
+                }
+
+            }
+            catch(FormatException e)
             {
                 Console.WriteLine(e.Message);
             }
