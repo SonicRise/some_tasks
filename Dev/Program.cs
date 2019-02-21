@@ -13,7 +13,7 @@ namespace Dev
             string txt1 = Console.ReadLine();
             string txt2 = Console.ReadLine();
 
-            Arr(txt1, txt2);
+            //Arr(txt1, txt2);
             Console.ReadLine();
         }
 
@@ -935,7 +935,12 @@ namespace Dev
             }
         }
 
-        static void Arr(string init_rows, string init_columns)
+        /// <summary>
+        /// 3.9) Creates a two-dimesional array and then deletes one random row and one random column.
+        /// </summary>
+        /// <param name="init_rows"> Number of rows </param>
+        /// <param name="init_columns"> Number of columns </param>
+        static void Arr_With_Deleted_Rows_Columns(string init_rows, string init_columns)
         {
             try
             {
@@ -944,8 +949,8 @@ namespace Dev
                 Random rand = new Random();
                 int a, b;
 
-                int row = 0; //rand.Next(numbers.GetLength(0) - 1); //0
-                int column = 0; //rand.Next(numbers.GetLength(1) - 1);//0
+                int row = rand.Next(numbers.GetLength(0) - 1); //0
+                int column = rand.Next(numbers.GetLength(1) - 1);//0
 
                 for (int i = 0; i < numbers.GetLength(0); i++)
                 {
@@ -966,11 +971,11 @@ namespace Dev
 
                 for (int i = 0; i < result.GetLength(0); i++)
                 {
-                    if (i == row) a = i + 1;
+                    if (i >= row) a = i + 1;
                     else a = i;
                     for (int j = 0; j < result.GetLength(1); j++)
                     {
-                        if (j == column) b = j + 1;
+                        if (j >= column) b = j + 1;
                         else b = j;
 
                         result[i, j] = numbers[a,b];
@@ -987,6 +992,90 @@ namespace Dev
                     }
                     Console.WriteLine();
                 }
+            }
+            catch(FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// 3.10) Creates a two-dimensional array and fills it by consequent numbers by spiral
+        /// </summary>
+        /// <param name="init_rows"> Number of rows </param>
+        /// <param name="init_columns"> Number of columns </param>
+        static void Arr_Spiral(string init_rows, string init_columns)
+        {
+            try
+            {
+                int[,] numbers = new int[Int32.Parse(init_rows), Int32.Parse(init_columns)];
+                int filler = 1;
+                int a = 0;
+                int b = 0;
+                int blockerR = numbers.GetLength(1)-1;
+                int blockerD = numbers.GetLength(0)-1;
+                int blockerL = 0;
+                int blockerT = 0;
+
+                bool right = true;
+                bool down = true;
+                
+                for (int i = 0; i < numbers.GetLength(0)*numbers.GetLength(1); i++)
+                {
+                    if (right && down)
+                    {
+                        numbers[a, b] = filler;
+                        b++;
+                        filler++;
+                        if (b == blockerR)
+                        {
+                            right = false;
+                            blockerR--;
+                        }
+                    }else if(down && !right)
+                    {
+                        numbers[a, b] = filler;
+                        a++;
+                        filler++;
+                        if (a == blockerD)
+                        {
+                            down = false;
+                            blockerD--;
+                        }
+                    }
+                    else if (!right && !down)
+                    {
+                        numbers[a, b] = filler;
+                        b--;
+                        filler++;
+                        if (b == blockerL)
+                        {
+                            right = true;
+                            blockerL++;
+                            //break;
+                        }
+                    }else if (!down && right)
+                    {
+                        numbers[a, b] = filler;
+                        a--;
+                        filler++;
+                        if (a == blockerT+1)
+                        {
+                            down = true;
+                            blockerT++;
+                        }
+                    }
+                }
+                
+
+                for (int i = 0; i < numbers.GetLength(0); i++)
+                {
+                    for (int j = 0; j < numbers.GetLength(1); j++)
+                    {
+                        Console.Write(numbers[i,j] + "\t");
+                    }
+                    Console.WriteLine();
+                }
 
             }
             catch(FormatException e)
@@ -994,5 +1083,7 @@ namespace Dev
                 Console.WriteLine(e.Message);
             }
         }
+
+
     }
 }
