@@ -10,10 +10,18 @@ namespace Dev
         static void Main(string[] args)
         {
             Console.WriteLine("Введите строку: ");
-            string txt1 = Console.ReadLine();
-            string txt2 = Console.ReadLine();
+            //string txt1 = Console.ReadLine();
+            //string txt2 = Console.ReadLine();
 
-            //Arr(txt1, txt2);
+            int[] arr = {1,2,3,4,5};
+            int number = 3;
+            //func(arr, number);
+            /*
+            foreach (int num in func(arr,number))
+            {
+                Console.WriteLine(num);
+            }*/
+
             Console.ReadLine();
         }
 
@@ -166,7 +174,8 @@ namespace Dev
                     fizz = false;
                     buzz = false;
                 }
-                catch (FormatException e) {
+                catch (FormatException e)
+                {
                     Console.WriteLine(e.Message);
                     exception = true;
                 }
@@ -364,7 +373,8 @@ namespace Dev
                     return "No";
                 }
             }
-            catch {
+            catch
+            {
                 return "Not a number";
             }
         }
@@ -395,7 +405,9 @@ namespace Dev
                     return number1 + " = " + number2;
                 }
 
-            } catch {
+            }
+            catch
+            {
                 return "Not a number";
             }
         }
@@ -571,7 +583,9 @@ namespace Dev
                         Console.Write(number1 + i + " ");
                     }
                 }
-            } catch {
+            }
+            catch
+            {
                 Console.WriteLine("Not a number");
             }
         }
@@ -816,13 +830,13 @@ namespace Dev
                     numbers[i] = rand.Next(100);
                 }
 
-                for (int i = 1; i < numbers.Length;i++)
+                for (int i = 1; i < numbers.Length; i++)
                 {
-                    for (int j = numbers.Length-1; j != 0; j--)
+                    for (int j = numbers.Length - 1; j != 0; j--)
                     {
-                        if (numbers[j] > numbers[j-1])
+                        if (numbers[j] > numbers[j - 1])
                         {
-                            temp = numbers[j-1];
+                            temp = numbers[j - 1];
                             numbers[j - 1] = numbers[j];
                             numbers[j] = temp;
                         }
@@ -834,7 +848,7 @@ namespace Dev
                     Console.Write(number + " ");
                 }
             }
-            catch(FormatException e)
+            catch (FormatException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -862,7 +876,7 @@ namespace Dev
                     Console.Write(symbol + " ");
                 }
 
-                for (int i = 0; i < symbols.Length/2; i++)
+                for (int i = 0; i < symbols.Length / 2; i++)
                 {
                     temp = symbols[i];
                     symbols[i] = symbols[symbols.Length - 1 - i];
@@ -905,7 +919,7 @@ namespace Dev
                 {
                     for (int j = 0; j < numbers.GetLength(1); j++)
                     {
-                        Console.Write(numbers[i,j] + "\t");
+                        Console.Write(numbers[i, j] + "\t");
                     }
                     Console.WriteLine();
                 }
@@ -929,7 +943,8 @@ namespace Dev
                     }
                     Console.WriteLine();
                 }
-            } catch(FormatException e)
+            }
+            catch (FormatException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -960,11 +975,11 @@ namespace Dev
                     }
                 }
 
-                for (int i = 0; i < numbers.GetLength(0);i++)
+                for (int i = 0; i < numbers.GetLength(0); i++)
                 {
                     for (int j = 0; j < numbers.GetLength(1); j++)
                     {
-                        Console.Write(numbers[i,j] + "\t");
+                        Console.Write(numbers[i, j] + "\t");
                     }
                     Console.WriteLine();
                 }
@@ -978,7 +993,7 @@ namespace Dev
                         if (j >= column) b = j + 1;
                         else b = j;
 
-                        result[i, j] = numbers[a,b];
+                        result[i, j] = numbers[a, b];
                     }
                 }
 
@@ -988,12 +1003,12 @@ namespace Dev
                 {
                     for (int j = 0; j < result.GetLength(1); j++)
                     {
-                        Console.Write(result[i,j] + " ");
+                        Console.Write(result[i, j] + " ");
                     }
                     Console.WriteLine();
                 }
             }
-            catch(FormatException e)
+            catch (FormatException e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -1012,15 +1027,15 @@ namespace Dev
                 int filler = 1;
                 int a = 0;
                 int b = 0;
-                int blockerR = numbers.GetLength(1)-1;
-                int blockerD = numbers.GetLength(0)-1;
+                int blockerR = numbers.GetLength(1) - 1;
+                int blockerD = numbers.GetLength(0) - 1;
                 int blockerL = 0;
                 int blockerT = 0;
 
                 bool right = true;
                 bool down = true;
-                
-                for (int i = 0; i < numbers.GetLength(0)*numbers.GetLength(1); i++)
+
+                for (int i = 0; i < numbers.GetLength(0) * numbers.GetLength(1); i++)
                 {
                     if (right && down)
                     {
@@ -1032,7 +1047,8 @@ namespace Dev
                             right = false;
                             blockerR--;
                         }
-                    }else if(down && !right)
+                    }
+                    else if (down && !right)
                     {
                         numbers[a, b] = filler;
                         a++;
@@ -1054,36 +1070,115 @@ namespace Dev
                             blockerL++;
                             //break;
                         }
-                    }else if (!down && right)
+                    }
+                    else if (!down && right)
                     {
                         numbers[a, b] = filler;
                         a--;
                         filler++;
-                        if (a == blockerT+1)
+                        if (a == blockerT + 1)
                         {
                             down = true;
                             blockerT++;
                         }
                     }
                 }
-                
+
 
                 for (int i = 0; i < numbers.GetLength(0); i++)
                 {
                     for (int j = 0; j < numbers.GetLength(1); j++)
                     {
-                        Console.Write(numbers[i,j] + "\t");
+                        Console.Write(numbers[i, j] + "\t");
                     }
                     Console.WriteLine();
                 }
 
             }
-            catch(FormatException e)
+            catch (FormatException e)
             {
                 Console.WriteLine(e.Message);
             }
         }
 
+        /// <summary>
+        /// 4.1) Calculates a double factorial of a number. Recursion is used.
+        /// </summary>
+        /// <param name="init_number"> Number from console </param>
+        static void Double_Factorial(string init_number)
+        {
+            try
+            {
+                int number = Int32.Parse(init_number);
+                Console.WriteLine(Fact_double_Rec(number));
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
+            int Fact_double_Rec(int number)
+            {
+                if (number <= 1) return 1;
+                return number * Fact_double_Rec(number - 2);
+            }
+        }
+
+        /// <summary>
+        /// 4.2) Shows a sum of squares of all number until entered number.
+        /// </summary>
+        /// <param name="init_quantity"> Quantity of numbers </param>
+        static void Sum_Of_Squares(string init_quantity)
+        {
+            try
+            {
+                int quantity = Int32.Parse(init_quantity);
+                Console.WriteLine(rec(quantity));
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            int rec(int quantity)
+            {
+                if (quantity == 1) return 1;
+                return quantity * quantity * rec(quantity - 1);
+            }
+        }
+
+        /// <summary>
+        /// 4.3) If a second argument more than initial array length, creates a copy of the initial array
+        /// if the secons argument less than initial array length, creates a new array with length of secons 
+        /// argument and copies first numbers from initial array.
+        /// </summary>
+        /// <param name="init_arr"> Initial array </param>
+        /// <param name="init_number"> Size of a new array </param>
+        /// <returns></returns>
+        static int[] Arr_Cuted_By_Number(int[] init_arr, int init_number)
+        {
+            int[] new_Arr;
+
+            if (init_number > init_arr.Length)
+            {
+                new_Arr = new int[init_arr.Length];
+
+                for (int i = 0; i < new_Arr.Length; i++)
+                {
+                    new_Arr[i] = init_arr[i];
+                }
+                return new_Arr;
+            }
+            else
+            {
+                new_Arr = new int [init_number];
+
+                for (int i = 0; i < new_Arr.Length; i++)
+                {
+                    new_Arr[i] = init_arr[i];
+                }
+                return new_Arr;
+            }
+        }
     }
 }
