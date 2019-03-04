@@ -13,13 +13,19 @@ namespace Dev
             //string txt1 = Console.ReadLine();
             //string txt2 = Console.ReadLine();
 
-            int[] arr = {1,2,3,4,5};
-            int number = 3;
-            //func(arr, number);
-            /*
-            foreach (int num in func(arr,number))
+            char[] arr = {'a', 'b', '5', '9', 'c', 'd'};
+            //int[,] arr = { { 1, 7 },{ 3, 4 }};
+            //int index1, index2;
+
+            //func(txt1);
+            
+            //Console.WriteLine(func(arr, out index1, out index2));
+            //Console.WriteLine(index1 + " " + index2);
+
+
+            /*foreach (char num in func(arr))
             {
-                Console.WriteLine(num);
+                Console.Write(num + " ");
             }*/
 
             Console.ReadLine();
@@ -1178,6 +1184,93 @@ namespace Dev
                     new_Arr[i] = init_arr[i];
                 }
                 return new_Arr;
+            }
+        }
+
+        /// <summary>
+        /// 4.4) Creates an int array form char array, converting chars into ASCII. 
+        /// </summary>
+        /// <param name="init_arr"> Initial char array </param>
+        /// <returns></returns>
+        static int[] Symbols_Arr_To_ASCII_Arr(char[] init_arr)
+        {
+            int[] arr = new int[init_arr.Length];
+            for (int i = 0; i < arr.Length; i++)
+            {
+                arr[i] = (int)init_arr[i];
+            }
+            return arr;
+        }
+
+        /// <summary>
+        /// 4.5) Calculates avg from array.
+        /// </summary>
+        /// <param name="init_arr"> Initial numberic array </param>
+        /// <returns></returns>
+        static int Avg_From_Arr(int[] init_arr)
+        {
+            int result = 0;
+            for (int i = 0; i < init_arr.Length; i++)
+            {
+                result += init_arr[i];
+            }
+            return result/init_arr.Length;
+        }
+
+        /// <summary>
+        /// 4.6) Finds max in a two-dimensional array and its indexes.
+        /// </summary>
+        /// <param name="init_arr"> Two-dimensional array </param>
+        /// <param name="index1"> 1st index of the array </param>
+        /// <param name="index2"> 2nd index of the array </param>
+        /// <returns></returns>
+        static int Max_2DArr_With_Indexes(int[,] init_arr, out int index1, out int index2)
+        {
+            index1 = 0;
+            index2 = 0;
+
+            for (int i = 0; i < init_arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < init_arr.GetLength(1); j++)
+                {
+                    if (init_arr[i,j] > init_arr[index1, index2])
+                    {
+                        index1 = i;
+                        index2 = j;
+                    }
+                }
+            }  
+            return init_arr[index1,index2];
+        }
+
+        /// <summary>
+        /// 4.7) Reverses a char array
+        /// </summary>
+        /// <param name="init_arr"> Initial array </param>
+        /// <returns></returns>
+        static char[] Arr_Char_Reverse(char[] init_arr)
+        {
+            char temp;
+            for (int i = 0; i < init_arr.Length / 2; i++)
+            {
+                temp = init_arr[init_arr.Length - 1 - i];
+                init_arr[init_arr.Length - 1 - i] = init_arr[i];
+                init_arr[i] = temp;
+            }
+            return init_arr;
+        }
+
+        static class ArrFillingByLine{
+            static int[] func(int a, int b)
+            {
+                int[] arr = new int[5];
+                return arr;
+            }
+
+            static char[] func(char a, char b)
+            {
+                char[] arr = new char[5];
+                return arr;
             }
         }
     }
