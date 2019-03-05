@@ -13,17 +13,12 @@ namespace Dev
             //string txt1 = Console.ReadLine();
             //string txt2 = Console.ReadLine();
 
-            char[] arr = {'a', 'b', '5', '9', 'c', 'd'};
+            //char[] arr = {'a', 'b', '5', '9', 'c', 'd'};
             //int[,] arr = { { 1, 7 },{ 3, 4 }};
-            //int index1, index2;
 
-            //func(txt1);
+            //Console.WriteLine(func("Ebal",'r','o','t'));
             
-            //Console.WriteLine(func(arr, out index1, out index2));
-            //Console.WriteLine(index1 + " " + index2);
-
-
-            /*foreach (char num in func(arr))
+            /*foreach (int num in func(1,2,3,4,5,8,12,4353))
             {
                 Console.Write(num + " ");
             }*/
@@ -1260,17 +1255,105 @@ namespace Dev
             return init_arr;
         }
 
-        static class ArrFillingByLine{
-            static int[] func(int a, int b)
+        /// <summary>
+        /// 4.8) Contains overridden method
+        /// </summary>
+        static class ArrFillingBetweenPoints{
+            /// <summary>
+            /// Creates array with numbers from first argument till second.
+            /// </summary>
+            /// <param name="number1"> First element of the array </param>
+            /// <param name="number2"> Last element of the array </param>
+            /// <returns></returns>
+            public static int[] FillingArr(int number1, int number2)
             {
-                int[] arr = new int[5];
+                int[] arr = new int[number2-number1+1];
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr[i] = number1;
+                    number1++;
+                }
                 return arr;
             }
-
-            static char[] func(char a, char b)
+            /// <summary>
+            /// Creates array with symbols from first argument till second.
+            /// </summary>
+            /// <param name="symbol1"> First element of the array </param>
+            /// <param name="symbol2"> Last element of the array </param>
+            /// <returns></returns>
+            public static char[] FillingArr(char symbol1, char symbol2)
             {
-                char[] arr = new char[5];
+                char[] arr = new char[symbol2-symbol1+1];
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr[i] = symbol1;
+                    symbol1++;
+                }
                 return arr;
+            }
+        }
+
+        /// <summary>
+        /// 4.9) Finds min and max in all arguments in method
+        /// </summary>
+        /// <param name="init_numbers"> random quantity of numbers </param>
+        /// <returns> one-dimensional array with 2 numbers, min and max of all arguments </returns>
+        static int[] Min_Max_In_Arguments(params int[] init_numbers)
+        {
+            int max = init_numbers[0];
+            int min = init_numbers[0];
+
+            int[] result = new int[2];
+
+            for (int i = 0; i < init_numbers.Length; i++)
+            {
+                if (max < init_numbers[i])
+                {
+                    max = init_numbers[i];
+                }
+
+                if (min > init_numbers[i])
+                {
+                    min = init_numbers[i];
+                }
+            }
+            result[0] = max;
+            result[1] = min;
+            return result;
+        }
+
+        /// <summary>
+        /// 4.10) Adds symbols to the end of the initial text.
+        /// </summary>
+        /// <param name="init_text"> Initial text where symbols would be added </param>
+        /// <param name="symbols"> Symbols which need to be added </param>
+        /// <returns> String with added symbols </returns>
+        static string func(string init_text, params char[] symbols)
+        {
+            for (int i = 0; i < symbols.Length; i++)
+            {
+                init_text += symbols[i];
+            }
+            return init_text;
+        }
+
+        class test
+        {
+            private char text;
+
+            public void setText(char text)
+            {
+                this.text = text;
+            }
+
+            public int getSymbolCode()
+            {
+                return this.text;
+            }
+
+            public void showText()
+            {
+                Console.WriteLine(this.text + " " + text);
             }
         }
     }
