@@ -11,17 +11,7 @@ namespace Dev
         {
             Console.WriteLine("Введите строку: ");
             //string txt1 = Console.ReadLine();
-            //string txt2 = Console.ReadLine();
 
-            //char[] arr = {'a', 'b', '5', '9', 'c', 'd'};
-            //int[,] arr = { { 1, 7 },{ 3, 4 }};
-
-            //Console.WriteLine(func("Ebal",'r','o','t'));
-            
-            /*foreach (int num in func(1,2,3,4,5,8,12,4353))
-            {
-                Console.Write(num + " ");
-            }*/
 
             Console.ReadLine();
         }
@@ -1337,24 +1327,111 @@ namespace Dev
             return init_text;
         }
 
-        class test
+        /// <summary>
+        /// Taks 5.1) Class with private symbol and 3 public methods.
+        /// </summary>
+        class Symbol
         {
             private char text;
 
-            public void setText(char text)
+            public void setSymblol(char text)
             {
                 this.text = text;
             }
 
             public int getSymbolCode()
             {
-                return this.text;
+                return (int)this.text;
             }
 
-            public void showText()
+            public void showSymbol()
             {
-                Console.WriteLine(this.text + " " + text);
+                Console.WriteLine(this.text + " " + (int)text);
             }
         }
+
+        /// <summary>
+        /// 5.2) Class with 2 private symbol and 1 public method which shows all symbols between class's symbols.
+        /// </summary>
+        class Symbol2
+        {
+            private char symbol1;
+            private char symbol2;
+
+            public void SetSymbol1(char symbol)
+            {
+                this.symbol1 = symbol;
+            }
+
+            public void SetSymbol2(char symbol)
+            {
+                this.symbol2 = symbol;
+            }
+
+            public void ShowAllBetweenSymbols()
+            {
+                for (int i = (int)symbol1; i <= (int)symbol2; i++)
+                {
+                    Console.Write((char)i + " ");
+                }
+            }
+        }
+
+        /// <summary>
+        /// 5.3) Class with 3 constructors and 2 private numbers.
+        /// </summary>
+        class Number
+        {
+            private int number1;
+            private int number2;
+
+            public Number()
+            {
+                this.number1 = 0;
+                this.number2 = 0;
+            }
+
+            public Number(int a)
+            {
+                this.number1 = a;
+                this.number2 = 0;
+            }
+
+            public Number(int a, int b)
+            {
+                this.number1 = a;
+                this.number2 = b;
+            }
+        }
+
+        /// <summary>
+        /// 5.4) Class with 2 constructors, one devides double to 2 parts. 
+        /// Numbers until dot converted to a char, numbers after dot written to private int.
+        /// </summary>
+        class SplitedDouble
+        {
+            public int number;
+            public char symbol;
+            
+            public SplitedDouble(double a)
+            {
+                string text = a.ToString();
+                string[] s = text.Split(',');
+                this.symbol = (char)Int32.Parse(s[0]);
+                this.number = Int32.Parse(s[1]);
+            }
+
+            public SplitedDouble(int number, char symbol)
+            {
+                this.number = number;
+                this.symbol = symbol;
+            }
+        }
+
+        class Test
+        {
+
+        }
+
     }
 }
