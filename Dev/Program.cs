@@ -12,7 +12,6 @@ namespace Dev
             Console.WriteLine("Введите строку: ");
             //string txt1 = Console.ReadLine();
 
-
             Console.ReadLine();
         }
 
@@ -1428,10 +1427,91 @@ namespace Dev
             }
         }
 
-        class Test
+        /// <summary>
+        /// Class with setter getter and constructor
+        /// </summary>
+        class Task5_5
         {
+            private int number;
 
+            public Task5_5(int number)
+            {
+                SetNumber(number);
+            }
+
+            public void SetNumber(int number)
+            {
+                if (number > 100)
+                {
+                    this.number = 100;
+                }
+                else
+                {
+                    this.number = number;
+                }
+            }
+
+            public void SetNumber()
+            {
+                this.number = 0;
+            }
+
+            public int GetNumber()
+            {
+                return this.number;
+            }
         }
 
+        class Task5_6
+        {
+            private int max = 0;
+            private int min = 0;
+
+            public Task5_6(int a, int b)
+            {
+                SetMinMax(a, b);
+            }
+            public Task5_6(int a)
+            {
+                SetMinMax(a);
+            }
+
+            public void SetMinMax(int a, int b)
+            {
+                if (a > this.max)
+                {
+                    this.max = a;
+                }
+                if (b > this.max)
+                {
+                    this.max = b;
+                }
+                if (a < this.max)
+                {
+                    this.min = a;
+                }
+                if (b < this.min)
+                {
+                    this.min = b;
+                }
+            }
+
+            public void SetMinMax(int a)
+            {
+                if (a > this.max)
+                {
+                    this.max = a;
+                }
+                if (a < this.min)
+                {
+                    this.min = a;
+                }
+            }
+
+            public void GetMinMax()
+            {
+                Console.WriteLine("Max: " + this.max + " Min: " + this.min);
+            }
+        }
     }
 }
