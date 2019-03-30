@@ -10,7 +10,11 @@ namespace Dev
         static void Main(string[] args)
         {
             Console.WriteLine("Введите строку: ");
-            //string txt1 = Console.ReadLine();
+
+            int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
+
+            Task5_9.Numbers(7,10,2,84,-7);
+
 
             Console.ReadLine();
         }
@@ -1511,6 +1515,87 @@ namespace Dev
             public void GetMinMax()
             {
                 Console.WriteLine("Max: " + this.max + " Min: " + this.min);
+            }
+        }
+
+        class Task5_7
+        {
+            private char symb;
+            private string text;
+
+            public void SetParams(char symb)
+            {
+                this.symb = symb;
+            }
+
+            public void SetParams(string text)
+            {
+                this.text = text;
+            }
+
+            public void SetParams(char[] symbs)
+            {
+                if (symbs.Length == 1)
+                {
+                    this.symb = symbs[0];
+                }
+                else
+                {
+                    this.text = string.Join("", symbs);
+                }
+            }
+
+            public void show()
+            {
+                Console.WriteLine(this.symb + " " + this.text);
+            }
+        }
+
+        class Task5_8
+        {
+            private static int number = 0;
+
+            public static void Show()
+            {
+                Console.WriteLine(number++);
+            }
+        }
+
+        class Task5_9
+        {
+            static public void Numbers(params int[] arr)
+            {
+                int min = arr[0];
+                int max = arr[0];
+                int avg = 0;
+
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    if (arr[i] < min)
+                    {
+                        min = arr[i];
+                    }
+
+                    if (arr[i] > max)
+                    {
+                        max = arr[i];
+                    }
+
+                    avg += arr[i];
+                }
+
+                avg = avg / arr.Length;
+
+                Console.WriteLine("Min: " + min + " Max: " + max + " Avg: " + avg);
+            }
+        }
+
+        //ToString()
+        class Task7_1
+        {
+            static public void A()
+            {
+
             }
         }
     }
