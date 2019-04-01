@@ -1652,8 +1652,24 @@ namespace Dev
 
         class Task7_4
         {
+            //привет идиот
+
+            
+            
             public static bool Equal(string text1, string text2)
             {
+                string text = "привет идиот";
+                string str = String.Empty;
+
+                for (int i = 0; i < text.Length; i++)
+                {
+                    for (int j = 0; j < text.Length-1; j++)
+                    {
+
+                    }
+                }
+
+
                 bool eq = false;
                 int symbols_text1 = 0;
                 int symbols_text2 = 0;
@@ -1662,7 +1678,7 @@ namespace Dev
                 {
                     for (int i = 0; i < text1.Length; i++)
                     {
-
+                         
                     }
                 }
                 else
