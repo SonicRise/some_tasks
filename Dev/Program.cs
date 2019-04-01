@@ -13,7 +13,8 @@ namespace Dev
 
             int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
 
-            Task5_9.Numbers(7,10,2,84,-7);
+            Console.WriteLine(Task7_3.Equal("berm","cerf"));
+              
 
 
             Console.ReadLine();
@@ -1593,9 +1594,82 @@ namespace Dev
         //ToString()
         class Task7_1
         {
-            static public void A()
+            static public void Spaces(string text)
             {
+                for (int i = 0; i < text.Length; i++)
+                {
+                    Console.Write(text[i] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
 
+        class Task7_2
+        { 
+            public static string Revers(string text)
+            {
+                string result = String.Empty;
+                string[] words = text.Split(' ');
+
+                for (int i = words.Length-1; i >= 0; i--)
+                {
+                    result = result + words[i] + " ";
+                }
+                return result;
+            }
+        }
+
+        class Task7_3
+        {
+            public static bool Equal(string text1, string text2)
+            {
+                bool eq = false;
+
+                if (text1.Length == text2.Length)
+                {
+                    for (int i = 0; i < text1.Length; i++)
+                    {
+                        if ((int)text1[i] - (int)text2[i] <= 1 && (int)text1[i] - (int)text2[i] >= -1)
+                        {
+                            if (i == text1.Length - 1)
+                            {
+                                eq = true;
+                            }
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+                return eq;
+            }
+        }
+
+        class Task7_4
+        {
+            public static bool Equal(string text1, string text2)
+            {
+                bool eq = false;
+                int symbols_text1 = 0;
+                int symbols_text2 = 0;
+
+                if (text1.Length == text2.Length)
+                {
+                    for (int i = 0; i < text1.Length; i++)
+                    {
+
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+                return eq;
             }
         }
     }
