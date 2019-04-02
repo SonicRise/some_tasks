@@ -13,9 +13,13 @@ namespace Dev
 
             int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
 
-            Console.WriteLine(Task7_3.Equal("berm","cerf"));
-              
+            foreach (int number in Task7_5.Places("xyi", 'и'))
+            {
+                Console.WriteLine(number);
+            }
 
+            
+            
 
             Console.ReadLine();
         }
@@ -1652,40 +1656,77 @@ namespace Dev
 
         class Task7_4
         {
-            //привет идиот
-
-            
-            
             public static bool Equal(string text1, string text2)
-            {
-                string text = "привет идиот";
-                string str = String.Empty;
+            {                
+                string forCount1 = string.Empty;
+                string forCount2 = string.Empty;
 
-                for (int i = 0; i < text.Length; i++)
+                for (int i = 0; i < text1.Length; i++)
                 {
-                    for (int j = 0; j < text.Length-1; j++)
+                    if (!forCount1.Contains(text1[i]))
                     {
+                        forCount1 += text1[i];
+                    }
 
+                    if (!forCount2.Contains(text2[i]))
+                    {
+                        forCount2 += text2[i];
                     }
                 }
 
-
-                bool eq = false;
-                int symbols_text1 = 0;
-                int symbols_text2 = 0;
-
-                if (text1.Length == text2.Length)
+                if (forCount1.Length == forCount2.Length)
                 {
-                    for (int i = 0; i < text1.Length; i++)
-                    {
-                         
-                    }
+                    return true;
                 }
                 else
                 {
                     return false;
                 }
-                return eq;
+            }
+        }
+
+        class Task7_5
+        {
+            public static int[] Places (string text, char symb)
+            {
+                int arrLength = 0;
+
+                for (int i = 0; i < text.Length; i++)
+                {
+                    if (text[i] == symb)
+                    {
+                        arrLength++;
+                    }
+                }
+
+                if (arrLength == 0)
+                {
+                    int[] arr0 = new int[1];
+                    arr0[0] = -1;
+                    return arr0;
+                }
+
+                int[] arr = new int[arrLength];
+                int index = 0;
+
+                for (int i = 0; i < text.Length; i++)
+                {
+                    if (text[i] == symb)
+                    {
+                        arr[index] = i;
+                        index++;
+                    }
+                }
+                return arr;
+            }
+        }
+
+        class Task7_6
+        {
+            public static char[] A(string text)
+            {
+                char[] arr = new char[10];
+                return arr;
             }
         }
     }
