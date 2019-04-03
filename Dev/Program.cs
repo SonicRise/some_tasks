@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace Dev
 {
@@ -13,13 +15,10 @@ namespace Dev
 
             int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
 
-            foreach (int number in Task7_5.Places("xyi", 'и'))
-            {
-                Console.WriteLine(number);
-            }
+            Task7_10 obj = new Task7_10();
 
-            
-            
+            Console.WriteLine(obj.ToString());
+
 
             Console.ReadLine();
         }
@@ -1723,10 +1722,121 @@ namespace Dev
 
         class Task7_6
         {
-            public static char[] A(string text)
+            public static List<char> AlphaOnly(string text)
             {
-                char[] arr = new char[10];
+                Regex regex = new Regex("[^a-zA-Zа-яА-я]");
+                string str = regex.Replace(text, "");
+
+                List<char> chars = new List<char>();
+
+                foreach (char symb in str)
+                {
+                    if (!chars.Contains(symb))
+                    {
+                        chars.Add(symb);
+                    }
+                }
+
+                return chars;
+            }
+        }
+
+        class Task7_7
+        {
+            public static string Substring(string text, int start, int length)
+            {
+                string result = string.Empty;
+
+                for (int i = 0; i < length; i++)
+                {
+                    result += text[start];
+                    start++;
+                }
+                return result;
+            }
+        }
+
+        class Task7_8
+        {
+            private string text;
+
+            public Task7_8(string text)
+            {
+                this.text = text;
+            }
+
+            public string Insert(string str, int index)
+            {
+                this.text = text.Substring(0, index+1)+str+text.Substring(index+1);
+                return this.text;
+            }
+
+            public override string ToString()
+            {
+                return text;
+            }
+        }
+
+        class Task7_9
+        {
+            private string text;
+            private char symb;
+
+            public Task7_9(string text, char symb)
+            {
+                this.text = text;
+                this.symb = symb;
+            }
+
+            public string[] Split()
+            {
+                string[] arr = text.Split(symb);
                 return arr;
+            }
+
+            public override string ToString()
+            {
+                string result = string.Empty;
+
+                result = "Text: " + text + " Symb: " + symb + '\n';
+
+                foreach (string str in text.Split(symb))
+                {
+                    result = result + "Подстрока: " + str + " ";
+                }
+                return result;
+            }
+        }
+
+        class Task7_10
+        {
+            private int[] arr;
+
+            public Task7_10()
+            {
+                Random rand = new Random();
+                arr = new int[rand.Next(10)];
+
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr[i] = rand.Next(10);
+                }
+            }
+
+            public override string ToString()
+            {
+                string result = string.Empty;
+                int sum = 0;
+
+                foreach (int number in arr)
+                {
+                    sum += number;
+                    result += number;
+                }
+
+                result = result + "\n" + "Count: " + arr.Length + " Avg: " + sum / arr.Length;
+
+                return result;
             }
         }
     }
