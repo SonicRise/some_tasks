@@ -15,9 +15,18 @@ namespace Dev
 
             int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
 
-            Task7_10 obj = new Task7_10();
+            Task8_6 obj = new Task8_6();
+            Task8_6 obj2 = new Task8_6();
 
-            Console.WriteLine(obj.ToString());
+            obj.number = 5;
+            obj2.number = 10;
+
+            Console.WriteLine((obj && obj2).number);
+
+            Console.WriteLine((obj2 && obj).number);
+
+
+
 
 
             Console.ReadLine();
@@ -1837,6 +1846,319 @@ namespace Dev
                 result = result + "\n" + "Count: " + arr.Length + " Avg: " + sum / arr.Length;
 
                 return result;
+            }
+        }
+
+        //Overload operators
+        class Task8_1
+        {
+            public char symb;
+
+            public Task8_1(char symb)
+            {
+                this.symb = symb;
+            }
+
+            public Task8_1()
+            {
+
+            }
+
+            public static Task8_1 operator ++(Task8_1 obj)
+            {
+                obj.symb++;
+                return obj;
+            }
+
+            public static Task8_1 operator --(Task8_1 obj)
+            {
+                obj.symb--;
+                return obj;
+            }
+
+            public static Task8_1 operator +(Task8_1 obj, int number)
+            {
+                Task8_1 result_obj = new Task8_1();
+
+                result_obj.symb = (char)(obj.symb + number);
+                return result_obj;
+            }
+
+            public static Task8_1 operator +(int number, Task8_1 obj)
+            {
+                Task8_1 result_obj = new Task8_1();
+
+                result_obj.symb = (char)(obj.symb + number);
+                return result_obj;
+            }
+
+            public static int operator -(Task8_1 obj1, Task8_1 obj2)
+            {
+                return obj1.symb-obj2.symb;
+            }
+        }
+
+        class Task8_2
+        {
+            public int[] arr;
+
+            public Task8_2(int size)
+            {
+                arr = new int[size];
+            }
+
+            public static string operator ~(Task8_2 obj)
+            {
+                string result = string.Empty;
+
+                foreach (int number in obj.arr)
+                {
+                    result += number;
+                }
+                return result;
+            }
+
+            public static Task8_2 operator ++(Task8_2 obj)
+            {
+                int[] arr = new int[obj.arr.Length+1];
+                obj.arr = arr;
+                return obj;
+            }
+
+            public static Task8_2 operator --(Task8_2 obj)
+            {
+                int[] arr = new int[obj.arr.Length-1];
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr[i] = obj.arr[i];
+                }
+                obj.arr = arr;
+                return obj;
+            }
+
+            public static Task8_2 operator +(Task8_2 obj1, Task8_2 obj2)
+            {
+                Task8_2 obj = new Task8_2(obj1.arr.Length + obj2.arr.Length);
+                int index = 0;
+
+                for (int i = 0; i < obj.arr.Length; i++)
+                {
+                    if (i >= obj1.arr.Length)
+                    {
+                        obj.arr[i] = obj2.arr[index];
+                        index++;
+                    }
+                    else
+                    {
+                        obj.arr[i] = obj1.arr[i];
+                    }
+                }
+                return obj;
+            }
+            public static Task8_2 operator +(Task8_2 obj, int number)
+            {
+                int[] arr = new int[obj.arr.Length + 1];
+
+                for (int i = 0; i < obj.arr.Length; i++)
+                {
+                    arr[i] = obj.arr[i];
+                }
+                arr[arr.Length - 1] = number;
+                obj.arr = arr;
+                return obj;
+            }
+            public static Task8_2 operator +(int number, Task8_2 obj)
+            {
+                int[] arr = new int[obj.arr.Length + 1];
+                arr[0] = number;
+                for (int i = 0; i < obj.arr.Length; i++)
+                {
+                    arr[i+1] = obj.arr[i];
+                }
+                obj.arr = arr;
+          
+                return obj;
+            }
+        }
+
+        class Task8_3
+        {
+            public int number1;
+            public int number2;
+
+            public Task8_3(int number1, int number2)
+            {
+                this.number1 = number1;
+                this.number2 = number2;
+            }
+
+            public static bool operator >(Task8_3 obj1, Task8_3 obj2)
+            {
+                if (Math.Pow(obj1.number1, 2) + Math.Pow(obj1.number2, 2) >
+                    Math.Pow(obj2.number1, 2) + Math.Pow(obj2.number2, 2))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            public static bool operator <(Task8_3 obj1, Task8_3 obj2)
+            {
+                if (Math.Pow(obj1.number1, 2) + Math.Pow(obj1.number2, 2) <
+                    Math.Pow(obj2.number1, 2) + Math.Pow(obj2.number2, 2))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        class Task8_4
+        {
+            public int number;
+            public string text;
+
+            public Task8_4(int number, string text)
+            {
+                this.number = number;
+                this.text = text;
+            }
+
+            public static bool operator >(Task8_4 obj1, Task8_4 obj2)
+            {
+                return obj1.text.Length > obj2.text.Length;
+            }
+
+            public static bool operator <(Task8_4 obj1, Task8_4 obj2)
+            {
+                return obj1.text.Length < obj2.text.Length;
+            }
+
+            public static bool operator >=(Task8_4 obj1, Task8_4 obj2)
+            {
+                return obj1.number >= obj2.number;
+            }
+
+            public static bool operator <=(Task8_4 obj1, Task8_4 obj2)
+            {
+                return obj1.number <= obj2.number;
+            }
+
+            public static bool operator ==(Task8_4 obj1, Task8_4 obj2)
+            {
+                if (obj1.number == obj2.number && obj1.text == obj2.text)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            public static bool operator !=(Task8_4 obj1, Task8_4 obj2)
+            {
+                if (obj1.number != obj2.number || obj1.text != obj2.text)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            public override bool Equals(object obj)
+            {
+                Task8_4 myObj = (Task8_4)obj;
+                if (myObj.number == this.number) return true;
+                else return false;
+            }
+
+            public override int GetHashCode()
+            {
+                return number*5;
+            }
+        }
+
+        class Task8_5
+        {
+            public int number;
+            public char symb;
+
+            public Task8_5(int number, char symb)
+            {
+                this.number = number;
+                this.symb = symb;
+            }
+
+            public static bool operator true(Task8_5 obj)
+            {
+                if (Math.Abs(obj.number - obj.symb) <= 10)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            public static bool operator false(Task8_5 obj)
+            {
+                if (Math.Abs(obj.number - obj.symb) > 10)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+
+        class Task8_6
+        {
+            public int number;
+
+            public static Task8_6 operator &(Task8_6 obj1, Task8_6 obj2)
+            {
+                if (obj1) return obj2;
+                else return obj1;
+            }
+            public static Task8_6 operator |(Task8_6 obj1, Task8_6 obj2)
+            {
+                if (obj1) return obj1;
+                else return obj2;
+            }
+            public static bool operator true(Task8_6 obj)
+            {
+                if (obj.number == 2 || obj.number == 3 ||
+                    obj.number == 5 || obj.number == 7)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            public static bool operator false(Task8_6 obj)
+            {
+                if (obj.number < 1 || obj.number > 10)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
     }
