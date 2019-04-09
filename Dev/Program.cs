@@ -2161,5 +2161,37 @@ namespace Dev
                 }
             }
         }
+
+        class Task8_7
+        {
+            private string text;
+
+            public Task8_7(string text)
+            {
+                this.text = text;
+            }
+            
+            public static explicit operator Task8_7(int num)
+            {
+                string temp = string.Empty;
+                for (int i = 0; i < num; i++)
+                {
+                    temp += 'A';
+                }
+
+                return new Task8_7(temp);
+            }
+
+            public static implicit operator int(Task8_7 obj)
+            {
+                return obj.text.Length;
+            }
+
+            public static explicit operator char(Task8_7 obj)
+            {
+                return obj.text[0];
+            }
+
+        }
     }
 }
